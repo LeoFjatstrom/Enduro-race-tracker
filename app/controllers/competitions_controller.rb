@@ -66,6 +66,6 @@ class CompetitionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def competition_params
-      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers)
+      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers, :open_for_registration)
     end
 end

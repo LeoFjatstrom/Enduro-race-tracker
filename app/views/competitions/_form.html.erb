@@ -31,6 +31,11 @@
     <%= form.number_field :max_number_of_drivers %>
   </div>
 
+  <div class="field">
+    <%= form.label :open_for_registration, 'Open for registration?' %><br>
+    <%= form.check_box :open_for_registration %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
