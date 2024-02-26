@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_26_205537) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_26_212530) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,6 +23,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_205537) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "competition_classes", force: :cascade do |t|
+    t.string "name"
+    t.integer "competition_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_competition_classes_on_competition_id"
+  end
+
+  create_table "competition_entries", force: :cascade do |t|
+    t.integer "driver_id", null: false
+    t.integer "competition_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_competition_entries_on_competition_id"
+    t.index ["driver_id"], name: "index_competition_entries_on_driver_id"
+  end
+
   create_table "competitions", force: :cascade do |t|
     t.string "name"
     t.datetime "start_time"
@@ -30,6 +47,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_205537) do
     t.integer "max_number_of_drivers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "drivers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_drivers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_205537) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "competition_classes", "competitions"
+  add_foreign_key "competition_entries", "competitions"
+  add_foreign_key "competition_entries", "drivers"
 end

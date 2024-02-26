@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver: one
+  competition: one
+  start_number: 1
+  class: MyString
+
+two:
+  driver: two
+  competition: two
+  start_number: 1
+  class: MyString
