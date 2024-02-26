@@ -1,2 +1,9 @@
 <div id="<%= dom_id competition %>">
+    <div>
+        <p><strong>Name:</strong> <%= @competition.name %></p>
+        <p><strong>Start Time:</strong> <%= @competition.start_time.strftime("%Y-%m-%d %H:%M:%S") %></p>
+        <p><strong>Type:</strong> <%= @competition.competition_type %></p>
+        <p><strong>Max Number of Drivers:</strong> <%= @competition.max_number_of_drivers %></p>
+    </div>
 </div>
+

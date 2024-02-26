@@ -1,17 +1,39 @@
-<%= form_with(model: competition) do |form| %>
+<%= form_with(model: competition, local: true) do |form| %>
   <% if competition.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(competition.errors.count, "error") %> prohibited this competition from being saved:</h2>
 
       <ul>
-        <% competition.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+      <% competition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
+  <div class="field">
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %><br>
+    <%= form.datetime_local_field :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :competition_type %><br>
+    <%= form.text_field :competition_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_number_of_drivers %><br>
+    <%= form.number_field :max_number_of_drivers %>
+  </div>
+
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= link_to 'Back', competitions_path %>

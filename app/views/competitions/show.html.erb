@@ -2,9 +2,22 @@
 
 <%= render @competition %>
 
+<h2>Signed Up Drivers</h2>
+<% if @competition.drivers.any? %>
+  <ul>
+    <% @competition.drivers.each do |driver| %>
+      <li><%= driver.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No drivers have signed up for this competition yet.</p>
+<% end %>
+
 <div>
   <%= link_to "Edit this competition", edit_competition_path(@competition) %> |
   <%= link_to "Back to competitions", competitions_path %>
 
   <%= button_to "Destroy this competition", @competition, method: :delete %>
 </div>
+
+

@@ -6,7 +6,7 @@
   <% @competitions.each do |competition| %>
     <%= render competition %>
     <p>
-      <%= link_to "Show this competition", competition %>
+      <%= link_to competition.name, competition %>
     </p>
   <% end %>
 </div>

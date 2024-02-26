@@ -60,11 +60,12 @@ class CompetitionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_competition
-      @competition = Competition.find(params[:id])
+  
+      @competition = Competition.includes(:drivers).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def competition_params
-      params.fetch(:competition, {})
+      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers)
     end
 end
