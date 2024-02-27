@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :competitions
+  resources :registrations
 end
