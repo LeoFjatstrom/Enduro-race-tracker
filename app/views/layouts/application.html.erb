@@ -14,7 +14,13 @@
   </head>
 
   <body>
-    <%= render 'shared/admin_navbar' %>
+    <% if admin_signed_in? %>
+      <%= render 'shared/admin_navbar' %>
+    <% elsif user_signed_in? %>
+      <%= render 'shared/user_navbar' %>
+    <% else %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
