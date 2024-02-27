@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_26_224556) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_27_103620) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_224556) do
     t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
   end
 
-  create_table "registrations", force: :cascade do |t|
+  create_table "station_registrations", force: :cascade do |t|
     t.integer "driver_id", null: false
     t.integer "user_id", null: false
     t.integer "station_id"
@@ -71,10 +71,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_224556) do
     t.datetime "passed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["competition_id"], name: "index_registrations_on_competition_id"
-    t.index ["driver_id"], name: "index_registrations_on_driver_id"
-    t.index ["station_id"], name: "index_registrations_on_station_id"
-    t.index ["user_id"], name: "index_registrations_on_user_id"
+    t.index ["competition_id"], name: "index_station_registrations_on_competition_id"
+    t.index ["driver_id"], name: "index_station_registrations_on_driver_id"
+    t.index ["station_id"], name: "index_station_registrations_on_station_id"
+    t.index ["user_id"], name: "index_station_registrations_on_user_id"
   end
 
   create_table "stations", force: :cascade do |t|
@@ -101,9 +101,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_224556) do
   add_foreign_key "competition_classes", "competitions"
   add_foreign_key "competition_entries", "competitions"
   add_foreign_key "competition_entries", "drivers"
-  add_foreign_key "registrations", "competitions"
-  add_foreign_key "registrations", "drivers"
-  add_foreign_key "registrations", "stations"
-  add_foreign_key "registrations", "users"
+  add_foreign_key "station_registrations", "competitions"
+  add_foreign_key "station_registrations", "drivers"
+  add_foreign_key "station_registrations", "stations"
+  add_foreign_key "station_registrations", "users"
   add_foreign_key "stations", "competitions"
 end

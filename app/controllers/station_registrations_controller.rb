@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class StationRegistrationsController < ApplicationController
   def new
     @registration = Registration.new
     @stations = Station.where(station_type: ['start', 'finish'])

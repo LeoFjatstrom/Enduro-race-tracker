@@ -10,19 +10,19 @@
           <%= link_to 'Home', root_path, class: 'nav-link active', aria: { current: 'page' } %>
         </li>
         <li class="nav-item">
-            <%= link_to 'Handle competitions', competitions_path, class: 'nav-link' %>
+            <%= link_to 'Competitions', competitions_path, class: 'nav-link', aria: { current: 'page' } %>
         </li>
       </ul>
       
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= current_admin.email %>
+            <%= current_user.email %>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><%= link_to 'Profile', edit_user_registration_path, class: 'dropdown-item' %></li>
             <li>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'dropdown-item' %>
             </li>
         </ul>
         </li>

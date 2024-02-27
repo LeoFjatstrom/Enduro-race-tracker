@@ -7,6 +7,6 @@ class Driver < ApplicationRecord
   has_many :competition_entries
   has_many :competitions, through: :competition_entries
 
-  has_many :registrations
-  has_many :stations, through: :registrations
+  has_many :station_registrations
+  has_many :stations, through: :station_registrations
 end

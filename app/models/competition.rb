@@ -4,6 +4,6 @@ class Competition < ApplicationRecord
     has_many :drivers, through: :competition_entries
 
     has_many :stations
-    has_many :registrations, through: :stations
-    has_many :drivers, through: :registrations
+    has_many :station_registrations, through: :stations
+    has_many :drivers, through: :station_registrations
 end
