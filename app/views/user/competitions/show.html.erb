@@ -1,0 +1,15 @@
+show competition by id
+
+<%= render 'shared/competition', competition: @competition %>
+
+
+<h2>Signed Up Drivers</h2>
+<% if @competition.drivers.any? %>
+<ul>
+    <% @competition.drivers.each do |driver| %>
+    <li><%= driver.name %></li>
+    <% end %>
+</ul>
+<% else %>
+<p>No drivers have signed up for this competition yet.</p>
+<% end %>
