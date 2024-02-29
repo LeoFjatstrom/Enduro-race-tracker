@@ -2,11 +2,29 @@
 
 <h1>Competitions</h1>
 
-<div id="competitions">
-  <% @competitions.each do |competition| %>
-    <%= render 'shared/competition', competition: competition %>
-    <p>
-      <%= link_to competition.name, user_competition_path(id: competition.id) %>
-    </p>
-  <% end %>
+<div id="competitions" class="container mt-3">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
+      <% @competitions.each do |competition| %>
+        <div class="col">
+          <div class = "card" style = "width: 18rem;" >
+            <div class="card-body" , style = "cursor: pointer;" onclick="location.href='<%= user_competition_path(id: competition.id) %>'">
+              <h5 class="card-title"><%= competition.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type %></h6>
+              <p class="card-text">Start Time: <%= competition.start_time ? competition.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'Not set' %></p>
+              <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers %></p>
+              <p class="card-text">No of Drivers Signed up: <%= competition.drivers.count %></p>
+              <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to 'View', user_competition_path(id: competition.id), class:"btn btn-primary" %>
+              <% if user_signed_in? %>
+                  <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class:"btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

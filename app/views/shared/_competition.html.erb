@@ -1,15 +1,13 @@
 <div id="<%= dom_id competition %>">
-    <%= link_to user_competition_path(id: competition.id), class: "card-link" do %>
-        <div class = "card card-body", style = "width: 18rem;" >
-            <h5 class="card-title">Name <%= competition.name %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type %></h6>
-            <p class="card-text">Start Time: <%= competition.start_time ? competition.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'Not set' %></p>
-            <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers %></p>
-            <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up %></p>
-            <% if user_signed_in? %>
-                <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class:"btn btn-primary" %>
-            <% end %>
-        </div>
-    <% end %>
+    <div class = "card card-body", style = "width: 18rem;" >
+        <h5 class="card-title">Name <%= competition.name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type %></h6>
+        <p class="card-text">Start Time: <%= competition.start_time ? competition.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'Not set' %></p>
+        <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers %></p>
+        <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up %></p>
+        <% if user_signed_in? %>
+            <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class:"btn btn-primary" %>
+        <% end %>
+    </div>
 </div>
 
