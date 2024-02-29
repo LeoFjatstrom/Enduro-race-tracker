@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Competitions</h1>
+
+<div id="competitions">
+  <% @competitions.each do |competition| %>
+    <%= render 'shared/competition', competition: competition %>
+    <p>
+      <%= link_to competition.name, user_competition_path(id: competition.id) %>
+    </p>
+  <% end %>
+</div>
