@@ -27,7 +27,7 @@ class Admin::CompetitionsController < ApplicationController
 
     respond_to do |format|
       if @competition.save
-        if @competition.competition_type == 'Enduro'
+        if @competition.competition_type == 'enduro'
           checkpoint_count = params[:competition][:checkpoint_count].to_i
           create_checkpoints_for_enduro(@competition, checkpoint_count)
         end
