@@ -1,0 +1,2 @@
+module Driver::CompetitionsHelper
+end

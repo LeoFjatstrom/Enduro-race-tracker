@@ -18,11 +18,11 @@
       <%= render 'shared/admin_navbar' %>
     <% elsif user_signed_in? %>
       <%= render 'shared/user_navbar' %>
+    <% elsif driver_signed_in? %>
+      <%= render 'shared/driver_navbar' %>
     <% else %>
       <%= render 'shared/navbar' %>
     <% end %>
-
-    <p style="color: green"><%= notice %></p>
     
     <%= render 'layouts/messages' %>
 
