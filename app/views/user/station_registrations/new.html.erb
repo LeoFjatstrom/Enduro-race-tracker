@@ -20,4 +20,31 @@
   </div>
 <% end %>
 
+<% if @previous_registrations.any? %>
+  <h3>Previous Registrations</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Driver Name</th>
+        <th>Start Number</th>
+        <th>Station Name</th>
+        <th>Passed At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @previous_registrations.each do |registration| %>
+        <tr>
+          <td><%= registration.driver.name %></td>
+          <td><%= registration.driver.competition_entries.find_by(competition_id: @competition.id)&.start_number %></td>
+          <td><%= registration.station.name %></td>
+          <td><%= registration.passed_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No previous registrations.</p>
+<% end %>
+
 <%= link_to 'Back', user_competitions_path %>
