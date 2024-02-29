@@ -4,7 +4,7 @@
       <% @competitions.each do |competition| %>
         <div class="col">
           <div class = "card" style = "width: 18rem;" >
-            <div class="card-body" , style = "cursor: pointer;" onclick="location.href='<%= user_competition_path(id: competition.id) %>'">
+            <div class="card-body" , style = "cursor: pointer;" onclick="location.href='<%= path_for_competition(competition) %>'">
               <h5 class="card-title"><%= competition.name %></h5>
               <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type %></h6>
               <p class="card-text">Start Time: <%= competition.start_time ? competition.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'Not set' %></p>
@@ -13,9 +13,12 @@
               <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up %></p>
             </div>
             <div class="card-footer">
-              <%= link_to 'View', user_competition_path(id: competition.id), class:"btn btn-primary" %>
+              <%= link_to 'View', path_for_competition(competition), class:"btn btn-primary" %>
               <% if user_signed_in? %>
                   <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class:"btn btn-primary" %>
+              <% end %>
+              <% if admin_signed_in? %>
+                  <%= link_to 'Edit', edit_admin_competition_path(competition.id), class:"btn btn-primary" %>
               <% end %>
             </div>
           </div>

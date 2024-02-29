@@ -1,6 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @competition %>
+<%= render 'shared/competition', competition: @competition %>
 
 <h2>Signed Up Drivers</h2>
 <% if @competition.drivers.any? %>
@@ -14,10 +12,10 @@
 <% end %>
 
 <div>
-  <%= link_to "Edit this competition", edit_competition_path(@competition) %> |
-  <%= link_to "Back to competitions", competitions_path %>
+  <%= link_to "Edit this competition", edit_admin_competition_path(@competition) %> |
+  <%= link_to "Back to competitions", admin_competitions_path %>
 
-  <%= button_to "Destroy this competition", @competition, method: :delete %>
+  <%= button_to "Destroy this competition",  admin_competition_path(@competition), method: :delete %>
 </div>
 
 

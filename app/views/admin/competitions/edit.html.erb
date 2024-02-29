@@ -5,6 +5,6 @@
 <br>
 
 <div>
-  <%= link_to "Show this competition", @competition %> |
-  <%= link_to "Back to competitions", competitions_path %>
+  <%= link_to "Show this competition", path_for_competition(@competition) %> |
+  <%= link_to "Back to competitions", admin_competitions_path %>
 </div>
