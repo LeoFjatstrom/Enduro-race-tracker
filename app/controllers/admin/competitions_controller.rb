@@ -30,6 +30,9 @@ class Admin::CompetitionsController < ApplicationController
         if @competition.competition_type == 'enduro'
           checkpoint_count = params[:competition][:checkpoint_count].to_i
           create_checkpoints_for_enduro(@competition, checkpoint_count)
+        else
+          @competition.stations.create(name: 'Start', station_type: 'Start')
+          @competition.stations.create(name: 'Goal', station_type: 'Goal')
         end
 
         format.html { redirect_to admin_competition_url(@competition), notice: "Competition was successfully created." }

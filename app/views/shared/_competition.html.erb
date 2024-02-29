@@ -22,17 +22,15 @@
         <p>No classes have been set for this competition yet.</p>
     <% end %>
 
-    <% if competition.competition_type != 'Rally' %>
-        <h2>Competition Stations</h2>
-        <% if competition.stations.any? %>
-            <ul>
-                <% competition.stations.each do |stations| %>
-                <li><%= stations.name %></li>
-                <% end %>
-            </ul>
-            <% else %>
-            <p>No stations have been set for this competition yet.</p>
-        <% end %>
+    <h2>Competition Stations</h2>
+    <% if competition.stations.any? %>
+        <ul>
+            <% competition.stations.each do |stations| %>
+            <li><%= stations.name %></li>
+            <% end %>
+        </ul>
+        <% else %>
+        <p>No stations have been set for this competition yet.</p>
     <% end %>
 
     <h2>Signed Up Drivers</h2>

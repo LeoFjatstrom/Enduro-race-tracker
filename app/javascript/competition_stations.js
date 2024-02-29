@@ -3,7 +3,7 @@ document.addEventListener("turbo:load", function() {
     var checkpointCountContainer = document.getElementById('checkpoint_count_container');
     
     function toggleCheckpointCount() {
-      checkpointCountContainer.style.display = competitionTypeSelect.value === 'enduro' ? 'block' : 'none';
+      checkpointCountContainer.style.display = competitionTypeSelect.value === 'Enduro' ? 'block' : 'none';
     }
   
     if (competitionTypeSelect) {
