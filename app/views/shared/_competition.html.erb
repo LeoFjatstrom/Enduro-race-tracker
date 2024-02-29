@@ -1,13 +1,36 @@
 <div id="<%= dom_id competition %>">
     <div class = "card card-body", style = "width: 18rem;" >
-        <h5 class="card-title">Name <%= competition.name %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type %></h6>
+        <h5 class="card-title"><%= competition.name.presence || 'Not set' %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type.presence || 'Not set' %></h6>
         <p class="card-text">Start Time: <%= competition.start_time ? competition.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'Not set' %></p>
-        <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers %></p>
-        <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up %></p>
+        <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers.presence || 'Not set' %></p>
+        <p class="card-text">No of Drivers Signed up: <%= competition.drivers.count %></p>
+        <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up ? 'Yes' : 'No' %></p>
         <% if user_signed_in? %>
             <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class:"btn btn-primary" %>
         <% end %>
     </div>
-</div>
+
+    <h2>Competition Classes</h2>
+    <% if competition.competition_classes.any? %>
+        <ul>
+            <% competition.competition_classes.each do |competition_class| %>
+            <li><%= competition_class.name %></li>
+            <% end %>
+        </ul>
+        <% else %>
+        <p>No classes have been set for this competition yet.</p>
+    <% end %>
+
+    <h2>Signed Up Drivers</h2>
+        <% if competition.drivers.any? %>
+            <ul>
+                <% competition.drivers.uniq.each do |driver| %>
+                <li><%= driver.email %> - Start Number: <%= driver.competition_entries.find_by(competition_id: competition.id).start_number %></li>
+                <% end %>
+            </ul>
+            <% else %>
+            <p>No drivers have signed up for this competition yet.</p>
+        <% end %>
+    </div>
 

@@ -40,7 +40,7 @@ class Admin::CompetitionsController < ApplicationController
   def update
     respond_to do |format|
       if @competition.update(competition_params)
-        format.html { redirect_to competition_url(@competition), notice: "Competition was successfully updated." }
+        format.html { redirect_to admin_competition_url(@competition), notice: "Competition was successfully updated." }
         format.json { render :show, status: :ok, location: @competition }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,6 +68,7 @@ class Admin::CompetitionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def competition_params
-      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers, :is_open_for_sign_up)
+      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers, :is_open_for_sign_up,
+        competition_classes_attributes: [:id, :name, :_destroy])
     end
 end

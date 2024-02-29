@@ -31,10 +31,31 @@
     <%= form.number_field :max_number_of_drivers %>
   </div>
 
+  <h3>Competition Classes</h3>
+  <div id="competition_classes">
+    <%= form.fields_for :competition_classes do |cc_form| %>
+      <div class="field">
+        <% if cc_form.object.new_record? %>
+          <%= cc_form.label :name %>
+          <%= cc_form.text_field :name %>
+        <% else %>
+          <%= cc_form.hidden_field :_destroy %>
+          <%= cc_form.label :name %>
+          <%= cc_form.text_field :name %>
+          <%= link_to "Remove", '#', class: "remove_fields" %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to "Add Class", '#', class: "add_fields", data: {id: "competition_classes", fields: form.fields_for(:competition_classes, CompetitionClass.new, child_index: "new_row") { |cc| render("competition_class_fields", cc_form: cc) }.gsub("\n", "")} %>
+  </div>
+
+
   <div class="field">
     <%= form.label :is_open_for_sign_up, 'Open for registration?' %><br>
     <%= form.check_box :is_open_for_sign_up %>
   </div>
+
+  
 
   <div class="actions">
     <%= form.submit %>

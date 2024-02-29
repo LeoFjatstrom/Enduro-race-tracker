@@ -17,8 +17,4 @@ class User::CompetitionsController < ApplicationController
       @competition = Competition.includes(:drivers).find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def competition_params
-      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers, :is_open_for_sign_up)
-    end
 end
