@@ -4,6 +4,7 @@ class Driver::CompetitionEntriesController < ApplicationController
 
   def index
     @competition_entries = current_driver.competition_entries.includes(:competition)
+    @competitions = current_driver.competitions.distinct
   end
 
   def show

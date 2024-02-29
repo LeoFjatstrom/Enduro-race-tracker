@@ -12,8 +12,8 @@
     </div>
   <% end %>
 
-  <%= form.collection_select :station_id, @competition.stations, :id, :name, {prompt: "Select a Station"} %>
-  <%= form.number_field :start_number, placeholder: "Start Number" %>
+  <%= form.collection_select :station_id, @stations, :id, :name, {selected: @selected_station_id, prompt: "Select a Station"} %>
+  <%= form.number_field :start_number, placeholder: "Start Number", autofocus: true %>
 
   <div class="actions">
     <%= form.submit "Register" %>
