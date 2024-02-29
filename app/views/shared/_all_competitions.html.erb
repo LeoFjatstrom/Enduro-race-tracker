@@ -3,22 +3,25 @@
     <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
       <% @competitions.each do |competition| %>
         <div class="col">
-          <div class = "card" style = "width: 18rem;" >
-            <div class="card-body" , style = "cursor: pointer;" onclick="location.href='<%= path_for_competition(competition) %>'">
-              <h5 class="card-title"><%= competition.name %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type %></h6>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body" style="cursor: pointer;" onclick="location.href='<%= path_for_competition(competition) %>'">
+              <h5 class="card-title"><%= competition.name.presence || 'Not set' %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Type: <%= competition.competition_type.presence || 'Not set' %></h6>
               <p class="card-text">Start Time: <%= competition.start_time ? competition.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'Not set' %></p>
-              <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers %></p>
+              <p class="card-text">Max Number of Drivers: <%= competition.max_number_of_drivers.presence || 'Not set' %></p>
               <p class="card-text">No of Drivers Signed up: <%= competition.drivers.count %></p>
-              <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up %></p>
+              <p class="card-text">Is Open For Sign Up: <%= competition.is_open_for_sign_up ? 'Yes' : 'No' %></p>
             </div>
             <div class="card-footer">
-              <%= link_to 'View', path_for_competition(competition), class:"btn btn-primary" %>
+              <%= link_to 'View', path_for_competition(competition), class: "btn btn-primary" %>
               <% if user_signed_in? %>
-                  <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class:"btn btn-primary" %>
+                <%= link_to 'Register at a station', new_user_competition_station_registration_path(competition.id), class: "btn btn-primary" %>
               <% end %>
               <% if admin_signed_in? %>
-                  <%= link_to 'Edit', edit_admin_competition_path(competition.id), class:"btn btn-primary" %>
+                <%= link_to 'Edit', edit_admin_competition_path(competition.id), class: "btn btn-primary" %>
+              <% end %>
+              <% if driver_signed_in? %>
+                <%= link_to 'Enter Comp', new_driver_competition_entry_path(competition_id: competition.id), class: "btn btn-primary" %>
               <% end %>
             </div>
           </div>

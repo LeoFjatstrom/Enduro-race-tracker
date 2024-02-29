@@ -4,6 +4,8 @@ module ApplicationHelper
             admin_competition_path(competition)
         elsif user_signed_in?
             user_competition_path(competition)
+        elsif driver_signed_in?
+            driver_competition_path(competition)
         else
             root_path
         end
