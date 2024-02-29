@@ -1,7 +1,6 @@
 # Pin npm packages by running ./bin/importmap
 
 pin "application", preload: true
-pin "competition_classes", to: "competition_classes.js", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
@@ -9,3 +8,6 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
+
+pin "competition_classes", to: "competition_classes.js", preload: true
+pin "competition_stations", to: "competition_stations.js", preload: true

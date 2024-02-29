@@ -27,6 +27,11 @@ class Admin::CompetitionsController < ApplicationController
 
     respond_to do |format|
       if @competition.save
+        if @competition.competition_type == 'Enduro'
+          checkpoint_count = params[:competition][:checkpoint_count].to_i
+          create_checkpoints_for_enduro(@competition, checkpoint_count)
+        end
+
         format.html { redirect_to admin_competition_url(@competition), notice: "Competition was successfully created." }
         format.json { render :show, status: :created, location: @competition }
       else
@@ -62,13 +67,27 @@ class Admin::CompetitionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_competition
-  
       @competition = Competition.includes(:drivers).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def competition_params
-      params.require(:competition).permit(:name, :start_time, :competition_type, :max_number_of_drivers, :is_open_for_sign_up,
+      params.require(:competition).permit(:name, :start_time, :checkpoint_count, :competition_type, :max_number_of_drivers, :is_open_for_sign_up,
         competition_classes_attributes: [:id, :name, :_destroy])
+    end
+
+    def create_checkpoints_for_enduro(competition, checkpoint_count)
+      puts(competition)
+      # Create Start station
+      competition.stations.create(name: 'Start', station_type: "Start")
+      
+      # Create the specified number of checkpoints
+      1.upto(checkpoint_count) do |i|
+        puts(i)
+        competition.stations.create(name: "Checkpoint #{i}", station_type: "Checkpoint")
+      end
+    
+      # Create Goal station
+      competition.stations.create(name: 'Goal', station_type: "Goal")
     end
 end

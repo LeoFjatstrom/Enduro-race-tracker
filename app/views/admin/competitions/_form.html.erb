@@ -23,8 +23,16 @@
 
   <div class="field">
     <%= form.label :competition_type %><br>
-    <%= form.text_field :competition_type %>
+    <%= form.select :competition_type, [['Enduro', 'Enduro'], ['Rally', 'Rally']], {}, { id: "competition_type_select", prompt: "Select a type" } %>
   </div>
+
+  <div id="checkpoint_count_container" style="display: none;">
+    <div class="field">
+      <%= form.label :checkpoint_count, "Number of Checkpoints" %>
+      <%= form.number_field :checkpoint_count, id: "checkpoint_count", min: 0 %>
+    </div>
+  </div>
+
 
   <div class="field">
     <%= form.label :max_number_of_drivers %><br>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_170806) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_29_194456) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_170806) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_open_for_sign_up", default: true
+    t.integer "checkpoint_count"
   end
 
   create_table "drivers", force: :cascade do |t|

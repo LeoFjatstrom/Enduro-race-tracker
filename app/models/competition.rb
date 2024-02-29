@@ -7,4 +7,5 @@ class Competition < ApplicationRecord
     has_many :station_registrations, through: :stations
 
     accepts_nested_attributes_for :competition_classes, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
+    accepts_nested_attributes_for :stations, allow_destroy: true
 end
