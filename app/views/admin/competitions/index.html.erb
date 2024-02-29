@@ -2,13 +2,6 @@
 
 <h1>Competitions</h1>
 
-<div id="competitions">
-  <% @competitions.each do |competition| %>
-    <%= render competition %>
-    <p>
-      <%= link_to competition.name, competition %>
-    </p>
-  <% end %>
-</div>
+<%= render 'shared/all_competitions' %>
 
-<%= link_to "New competition", new_competition_path %>
+<%= link_to "New competition", new_admin_competition_path %>

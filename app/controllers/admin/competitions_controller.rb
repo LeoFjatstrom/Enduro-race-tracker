@@ -9,6 +9,7 @@ class Admin::CompetitionsController < ApplicationController
 
   # GET /competitions/1 or /competitions/1.json
   def show
+    @competition = @competition
   end
 
   # GET /competitions/new
@@ -26,7 +27,7 @@ class Admin::CompetitionsController < ApplicationController
 
     respond_to do |format|
       if @competition.save
-        format.html { redirect_to competition_url(@competition), notice: "Competition was successfully created." }
+        format.html { redirect_to admin_competition_url(@competition), notice: "Competition was successfully created." }
         format.json { render :show, status: :created, location: @competition }
       else
         format.html { render :new, status: :unprocessable_entity }
