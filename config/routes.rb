@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   # Driver routes
-  scope module: 'driver', path: '/', as: 'driver' do
+  scope module: 'driver', path: '/driver', as: 'driver' do
     resources :competitions, only: [:index, :show] do
       resources :competition_entries, path: 'entries', as: 'entries'
     end
